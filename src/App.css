@@ -1,0 +1,156 @@
+/* Base Styles */
+:root {
+  --primary-color: #3a86ff;
+  --secondary-color: #8338ec;
+  --accent-color: #a7c957;
+  --text-light: #f8f9fa;
+  --text-dark: #212529;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Settings */
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fixed Background */
+.fixed-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("./me1.jpg") center/cover no-repeat;
+  z-index: -2;
+  filter: brightness(0.8);
+}
+
+/* Blur Overlay */
+.app::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.app.scrolled::before {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Sections */
+section {
+  position: relative;
+  min-height: 100vh;
+  padding: 1rem 1rem;
+  /* z-index: 1; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Navbar */
+.main-nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-around;
+  gap: 2.5rem;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: var(--transition);
+}
+
+.main-nav:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition);
+  padding: 0.5rem 0;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  transition: var(--transition);
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.nav-link.active .nav-icon,
+.nav-link:hover .nav-icon {
+  transform: translateY(-5px) scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  section {
+    padding: 5rem 1.5rem;
+  }
+
+  .main-nav {
+    width: 90%;
+    gap: 1.5rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 4rem 1rem;
+  }
+
+  .main-nav {
+    bottom: 1rem;
+    min-width: 90%;
+    gap: 1rem;
+  }
+
+  .nav-link span {
+    display: none;
+  }
+
+  .nav-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
+}
