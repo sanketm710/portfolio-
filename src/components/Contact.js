@@ -1,7 +1,8 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import confetti from "canvas-confetti";
-import "./Home.css";import {
+import {
   FaPaperPlane,
   FaHeart,
   FaLinkedin,
@@ -9,8 +10,43 @@ import "./Home.css";import {
   FaPhoneAlt,
   FaEnvelope,
 } from "react-icons/fa";
+import "./Home.css";
 
 const Contact = () => {
+  // Animation controls
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", damping: 15 },
+    },
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -26,7 +62,6 @@ const Contact = () => {
 
       const data = await response.json();
       if (data.success) {
-        // 🎊 CONFETTI EXPLOSION! 🎊
         confetti({
           particleCount: 150,
           spread: 70,
@@ -44,13 +79,24 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="contact-section">
-      <div className="contact-container">
-        <h2>
-          Let's Build Something Awesome! <FaHeart color="#ff1493" />
-        </h2>
+    <motion.section
+      id="contact"
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
+      className="contact-section"
+    >
+      <motion.div className="contact-container">
+        <motion.h2 variants={itemVariants}>
+          Let's Build Something Awesome! <FaHeart className="heart-pulse" />
+        </motion.h2>
 
-        <form onSubmit={handleSubmit}>
+        <motion.form
+          variants={itemVariants}
+          onSubmit={handleSubmit}
+          className="contact-form"
+        >
           <input type="hidden" name="_captcha" value="false" />
           <input
             type="hidden"
@@ -80,43 +126,50 @@ const Contact = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className="submit-btn">
-            <FaPaperPlane /> Send with Love
-          </button>
-        </form>
+          <motion.button
+            type="submit"
+            className="submit-btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaPaperPlane className="paper-plane" /> Send with Love
+          </motion.button>
+        </motion.form>
 
-        <div className="direct-contact">
+        <motion.div variants={itemVariants} className="direct-contact">
           <h3>Prefer a direct approach?</h3>
           <div className="social-links">
-            <a
+            <motion.a
               href="https://www.linkedin.com/in/sanket-dhandhlya-68baa9222/"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ y: -3 }}
             >
               <FaLinkedin /> LinkedIn
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://github.com/sanketm710"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ y: -3 }}
             >
               <FaGithub /> GitHub
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="mailto:sanketm710@gmail.com"
               target="_blank"
               rel="noreferrer"
+              whileHover={{ y: -3 }}
             >
               <FaEnvelope /> Email
-            </a>
-            <a href="tel:+919913521777">
+            </motion.a>
+            <motion.a href="tel:+919913521777" whileHover={{ y: -3 }}>
               <FaPhoneAlt /> Call Me
-            </a>
-        <p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhcfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+            </motion.a>
           </div>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
