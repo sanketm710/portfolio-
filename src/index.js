@@ -1,42 +1,27 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { Helmet } from "react-helmet";
+import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>Sanket's Portfolio</title>
-      <meta
-        name="description"
-        content="Professional portfolio of Sanket Dhandhlya, Web Developer"
-      />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#000000" />
-      <link rel="canonical" href="https://sanket-gilt.vercel.app/" />
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://sanket-gilt.vercel.app/" />
-      <meta property="og:title" content="Sanket's Portfolio" />
-      <meta
-        property="og:description"
-        content="Professional portfolio of Sanket Dhandhlya, Web Developer"
-      />
-      <meta property="og:image" content="./me1.jpg" />
-      {/* Twitter */}
-
-
-      <meta property="twitter:image" content="./me1.jpg" />
-    </Helmet>
-    <App />
-  </React.StrictMode>
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="./me1.jpg" />
+        <link rel="icon" type="image/png" sizes="192x192" href="./me1.jpg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./me1.jpg" />
+        <link rel="icon" type="image/png" sizes="16x16" href="./me1.jpg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Portfolio Website" />
+        <link rel="manifest" href="public\manifest.json" />
+        <title>Sanket's Portfolio</title>
+      </head>
+      <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+      </body>
+    </html>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
