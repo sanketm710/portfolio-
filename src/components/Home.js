@@ -159,7 +159,7 @@ export default function Home() {
             className={`nav-link ${activeSection === "home" ? "active" : ""}`}
           >
             <FaUser className="nav-icon" />
-            <span>ghar</span>
+            <span>Home</span>
           </a>
 
           <a
