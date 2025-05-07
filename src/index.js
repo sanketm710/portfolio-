@@ -28,13 +28,8 @@ root.render(
       />
       <meta property="og:image" content="./me1.jpg" />
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://yourportfolio.com" />
-      <meta property="twitter:title" content="Sanket's Portfolio" />
-      <meta
-        property="twitter:description"
-        content="Professional portfolio of Sanket Dhandhlya, Web Developer"
-      />
+
+
       <meta property="twitter:image" content="./me1.jpg" />
     </Helmet>
     <App />
