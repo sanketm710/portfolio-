@@ -167,6 +167,13 @@ const Contact = () => {
               <FaPhoneAlt /> Call Me
             </motion.a>
           </div>
+          <motion.div
+            className="divider"
+            variants={itemVariants}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8 }}
+          />
         </motion.div>
       </motion.div>
     </motion.section>

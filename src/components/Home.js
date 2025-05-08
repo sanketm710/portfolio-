@@ -16,6 +16,7 @@ import {
   
 } from "react-icons/fa";
 import confetti from "canvas-confetti";
+import { motion, useAnimation } from "framer-motion";
 
 
 export default function Home() {
@@ -35,8 +36,9 @@ export default function Home() {
         if (el && scrollPos >= el.offsetTop) {
           setActiveSection(section);
         }
-      });
+      }); 
     };
+    
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -95,13 +97,25 @@ export default function Home() {
   //     origin: { x: 1 },
   //   });
   // };
+  const itemVariants = {
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 12,
+      },
+    },
+  };
 
   return (
     <section id="home" className="home-section">
       <div className="overlay" />
       <div className="content-wrapper">
         <header className="header">
-          <span className="status-badge">  Open to work</span>
+          <span className="status-badge"> Open to work</span>
           {/* <button
             onClick={fireConfetti}
             className="bg-purple-600 hover:bg-purple-800 text-white px-6 py-3 rounded-lg"
@@ -159,7 +173,7 @@ export default function Home() {
             className={`nav-link ${activeSection === "home" ? "active" : ""}`}
           >
             <FaUser className="nav-icon" />
-            <span>ghar</span>
+            <span>Home</span>
           </a>
 
           <a
@@ -197,6 +211,13 @@ export default function Home() {
             <span>Contact</span>
           </a>
         </nav>
+        <motion.div
+          className="divider"
+          variants={itemVariants}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8 }}
+        />
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import "./App.css";
 
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -14,6 +15,7 @@ function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+    
 
   return (
     <div className={`app ${scrolled ? "scrolled" : ""}`}>
@@ -21,9 +23,8 @@ function App() {
       <Home />
       <Summary />
       <Experience />
-      <Skills/>
+      <Skills />
       <Contact />
-
     </div>
   );
 }
