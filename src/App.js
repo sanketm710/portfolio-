@@ -20,6 +20,8 @@ function App() {
   return (
     <div className={`app ${scrolled ? "scrolled" : ""}`}>
       <div className="fixed-bg"></div>
+     
+     
       <Home />
       <Summary />
       <Experience />
