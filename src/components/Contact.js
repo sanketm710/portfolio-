@@ -175,12 +175,12 @@ const Contact = () => {
               {
                 icon: <FaLinkedin />,
                 text: "LinkedIn",
-                href: "https://linkedin.com/in/yourprofile",
+                href: "https://www.linkedin.com/in/sanket-dhandhlya-68baa9222/",
               },
               {
                 icon: <FaGithub />,
                 text: "GitHub",
-                href: "https://github.com/yourprofile",
+                href: "https://github.com/sanketm710",
               },
               {
                 icon: <FaEnvelope />,
